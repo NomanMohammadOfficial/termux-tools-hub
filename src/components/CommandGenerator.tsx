@@ -60,13 +60,13 @@ export const CommandGenerator = () => {
               setSelectedCommand(COMMAND_CATEGORIES[value as keyof typeof COMMAND_CATEGORIES][0].command);
             }}
           >
-            <SelectTrigger className="bg-terminal-black border-terminal-green/20">
+            <SelectTrigger className="bg-terminal-black border-terminal-green/20 text-terminal-light">
               <SelectValue placeholder="Select category" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="basic">Basic Commands</SelectItem>
-              <SelectItem value="network">Networking Tools</SelectItem>
-              <SelectItem value="development">Development Tools</SelectItem>
+            <SelectContent className="bg-terminal-black border-terminal-green/20">
+              <SelectItem value="basic" className="text-terminal-light hover:text-terminal-green">Basic Commands</SelectItem>
+              <SelectItem value="network" className="text-terminal-light hover:text-terminal-green">Networking Tools</SelectItem>
+              <SelectItem value="development" className="text-terminal-light hover:text-terminal-green">Development Tools</SelectItem>
             </SelectContent>
           </Select>
 
@@ -74,12 +74,16 @@ export const CommandGenerator = () => {
             value={selectedCommand}
             onValueChange={setSelectedCommand}
           >
-            <SelectTrigger className="bg-terminal-black border-terminal-green/20">
+            <SelectTrigger className="bg-terminal-black border-terminal-green/20 text-terminal-light">
               <SelectValue placeholder="Select command" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-terminal-black border-terminal-green/20">
               {COMMAND_CATEGORIES[category as keyof typeof COMMAND_CATEGORIES].map((cmd) => (
-                <SelectItem key={cmd.name} value={cmd.command}>
+                <SelectItem 
+                  key={cmd.name} 
+                  value={cmd.command}
+                  className="text-terminal-light hover:text-terminal-green"
+                >
                   {cmd.name}
                 </SelectItem>
               ))}

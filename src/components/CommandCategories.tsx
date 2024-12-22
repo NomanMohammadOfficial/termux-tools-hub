@@ -116,7 +116,7 @@ export const CommandCategories = () => {
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <h3 className="font-mono font-medium text-terminal-light">{cmd.name}</h3>
-                  <p className="text-sm text-terminal-light/70">{cmd.description}</p>
+                  <p className="text-sm text-terminal-light opacity-90">{cmd.description}</p>
                 </div>
                 <Button
                   size="sm"

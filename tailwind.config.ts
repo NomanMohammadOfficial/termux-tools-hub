@@ -21,9 +21,10 @@ export default {
       colors: {
         terminal: {
           black: "#0A0A0A",
-          green: "#00FF00",
-          gray: "#1A1A1A",
-          light: "#F1F1F1",
+          green: "#50FA7B",
+          gray: "#1A1F2C",
+          light: "#F8F8F2",
+          muted: "#6272A4",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
