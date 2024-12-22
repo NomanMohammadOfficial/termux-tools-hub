@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Bot, Send, Terminal } from "lucide-react";
+import { Bot, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const CommandAssistant = () => {
@@ -16,20 +16,27 @@ export const CommandAssistant = () => {
 
     setIsLoading(true);
     try {
-      const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_GEMINI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `You are a Termux command expert. Please provide detailed steps and commands for the following request: ${prompt}. Format your response clearly with step-by-step instructions and necessary commands.`
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: `You are a Termux command expert. Please provide detailed steps and commands for the following request: ${prompt}. Format your response clearly with step-by-step instructions and necessary commands.`
+              }]
             }]
-          }]
-        }),
-      });
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
 
       const data = await response.json();
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
@@ -38,6 +45,7 @@ export const CommandAssistant = () => {
         throw new Error("Invalid response format");
       }
     } catch (error) {
+      console.error('Error:', error);
       toast({
         title: "Error",
         description: "Failed to get response. Please try again.",
