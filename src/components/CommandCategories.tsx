@@ -81,6 +81,8 @@ export const CommandCategories = () => {
     }
   };
 
+  const IconComponent = CATEGORIES[activeCategory as keyof typeof CATEGORIES].icon;
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-2">
@@ -104,9 +106,7 @@ export const CommandCategories = () => {
       <Card className="bg-terminal-gray border-terminal-green/20">
         <CardHeader>
           <CardTitle className="text-xl font-mono text-terminal-light flex items-center gap-2">
-            {CATEGORIES[activeCategory as keyof typeof CATEGORIES].icon({
-              className: "h-5 w-5",
-            })}
+            <IconComponent className="h-5 w-5" />
             {CATEGORIES[activeCategory as keyof typeof CATEGORIES].title}
           </CardTitle>
         </CardHeader>
