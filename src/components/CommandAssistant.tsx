@@ -17,6 +17,11 @@ export const CommandAssistant = () => {
     setIsLoading(true);
     try {
       const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      
+      if (!apiKey) {
+        throw new Error("Gemini API key is not configured");
+      }
+
       const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
         {
@@ -35,7 +40,8 @@ export const CommandAssistant = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
       }
 
       const data = await response.json();
@@ -48,7 +54,7 @@ export const CommandAssistant = () => {
       console.error('Error:', error);
       toast({
         title: "Error",
-        description: "Failed to get response. Please try again.",
+        description: error instanceof Error ? error.message : "Failed to get response. Please try again.",
         variant: "destructive",
       });
     } finally {
