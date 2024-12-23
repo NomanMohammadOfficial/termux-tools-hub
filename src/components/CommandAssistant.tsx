@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
 
 export const CommandAssistant = () => {
   const [prompt, setPrompt] = useState("");
@@ -17,18 +16,8 @@ export const CommandAssistant = () => {
 
     setIsLoading(true);
     try {
-      // Get the API key from Supabase config
-      const { data: { VITE_GEMINI_API_KEY: apiKey }, error: configError } = await supabase
-        .from('config')
-        .select('VITE_GEMINI_API_KEY')
-        .single();
-
-      if (configError || !apiKey) {
-        throw new Error("Gemini API key is not configured");
-      }
-
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
         {
           method: "POST",
           headers: {
