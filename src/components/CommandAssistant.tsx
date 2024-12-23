@@ -14,10 +14,20 @@ export const CommandAssistant = () => {
     e.preventDefault();
     if (!prompt.trim()) return;
 
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      toast({
+        title: "Configuration Error",
+        description: "Gemini API key is not configured. Please check your environment variables.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
     try {
       const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${import.meta.env.VITE_GEMINI_API_KEY}`,
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
         {
           method: "POST",
           headers: {
