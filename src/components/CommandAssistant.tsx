@@ -14,22 +14,36 @@ export const CommandAssistant = () => {
 
   useEffect(() => {
     const fetchApiKey = async () => {
-      const { data: { VITE_GEMINI_API_KEY }, error } = await supabase
-        .from('secrets')
-        .select('VITE_GEMINI_API_KEY')
-        .single();
+      try {
+        const { data, error } = await supabase.functions.invoke('getGeminiKey');
+        
+        if (error) {
+          console.error('Error fetching API key:', error);
+          toast({
+            title: "Configuration Error",
+            description: "Failed to fetch API key. Please check your configuration.",
+            variant: "destructive",
+          });
+          return;
+        }
 
-      if (error) {
-        console.error('Error fetching API key:', error);
+        if (data?.key) {
+          setApiKey(data.key);
+        } else {
+          toast({
+            title: "Configuration Error",
+            description: "API key not found in configuration.",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error('Error:', error);
         toast({
-          title: "Configuration Error",
-          description: "Failed to fetch API key. Please check your configuration.",
+          title: "Error",
+          description: "Failed to fetch API key. Please try again.",
           variant: "destructive",
         });
-        return;
       }
-
-      setApiKey(VITE_GEMINI_API_KEY);
     };
 
     fetchApiKey();
