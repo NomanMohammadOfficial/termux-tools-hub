@@ -1,6 +1,8 @@
 import { Terminal, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "./ThemeToggle";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Header = () => {
   const location = useLocation();
@@ -33,11 +35,42 @@ export const Header = () => {
           <a href="#guides" className="text-terminal-light hover:text-terminal-green transition-colors">Guides</a>
           <a href="#about" className="text-terminal-light hover:text-terminal-green transition-colors">About</a>
           <a href="#contact" className="text-terminal-light hover:text-terminal-green transition-colors">Contact</a>
+          <ThemeToggle />
         </nav>
 
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu className="w-6 h-6 text-terminal-light" />
-        </Button>
+        <div className="flex items-center space-x-4 md:hidden">
+          <ThemeToggle />
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="w-6 h-6 text-terminal-light" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="bg-terminal-black/95 border-terminal-gray">
+              <nav className="flex flex-col space-y-4 mt-8">
+                <Link 
+                  to="/" 
+                  className={`text-terminal-light hover:text-terminal-green transition-colors ${
+                    location.pathname === "/" ? "text-terminal-green" : ""
+                  }`}
+                >
+                  Home
+                </Link>
+                <Link 
+                  to="/commands" 
+                  className={`text-terminal-light hover:text-terminal-green transition-colors ${
+                    location.pathname === "/commands" ? "text-terminal-green" : ""
+                  }`}
+                >
+                  Commands
+                </Link>
+                <a href="#guides" className="text-terminal-light hover:text-terminal-green transition-colors">Guides</a>
+                <a href="#about" className="text-terminal-light hover:text-terminal-green transition-colors">About</a>
+                <a href="#contact" className="text-terminal-light hover:text-terminal-green transition-colors">Contact</a>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );

@@ -5,6 +5,7 @@ import { FeaturedTools } from "@/components/FeaturedTools";
 import { DownloadSection } from "@/components/DownloadSection";
 import { CommandAssistant } from "@/components/CommandAssistant";
 import { Terminal, Book, Code, Users } from "lucide-react";
+import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -82,6 +83,7 @@ const Index = () => {
       
       <FeaturedTools />
       <DownloadSection />
+      <Footer />
     </div>
   );
 };
