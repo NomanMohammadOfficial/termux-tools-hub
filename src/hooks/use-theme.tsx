@@ -1,9 +1,17 @@
 import { useState, useEffect } from "react";
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<"light" | "dark">(
-    () => (localStorage.getItem("theme") as "light" | "dark") || "dark"
-  );
+  const [theme, setTheme] = useState<"light" | "dark">(() => {
+    // Check localStorage first
+    const stored = localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") return stored;
+    
+    // Then check system preference
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  });
 
   useEffect(() => {
     const root = window.document.documentElement;
