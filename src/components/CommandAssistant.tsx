@@ -89,7 +89,25 @@ export const CommandAssistant = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!prompt.trim()) return;
+    const trimmedPrompt = prompt.trim();
+    
+    if (!trimmedPrompt) {
+      toast({
+        title: "Invalid Input",
+        description: "Please enter a specific command or task you'd like help with.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    if (trimmedPrompt.length < 5) {
+      toast({
+        title: "Input Too Short",
+        description: "Please provide more details about what you'd like to do in Termux.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     if (!apiKey) {
       toast({
@@ -112,7 +130,12 @@ export const CommandAssistant = () => {
           body: JSON.stringify({
             contents: [{
               parts: [{
-                text: `You are a Termux command expert. Please provide detailed steps and commands for the following request: ${prompt}. Format your response with numbered steps, code blocks using markdown triple backticks, and additional notes at the end. Each step should be clearly labeled as "Step X:" and include a brief description followed by the relevant commands in a code block.`
+                text: `You are a Termux command expert. The user has requested: "${trimmedPrompt}". 
+                If this is a greeting or unclear request, respond with "Please provide a specific command or task you'd like help with in Termux."
+                Otherwise, provide detailed steps and commands for completing this task.
+                Format your response with numbered steps, code blocks using markdown triple backticks, and additional notes at the end. 
+                Each step should be clearly labeled as "Step X:" and include a brief description followed by the relevant commands in a code block.
+                Only provide Termux-related commands and information.`
               }]
             }]
           }),
