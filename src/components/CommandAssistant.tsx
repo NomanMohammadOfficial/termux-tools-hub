@@ -1,24 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Bot, Send } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 export const CommandAssistant = () => {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [apiKey, setApiKey] = useState<string | null>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const fetchApiKey = async () => {
+      const { data: { VITE_GEMINI_API_KEY }, error } = await supabase
+        .from('secrets')
+        .select('VITE_GEMINI_API_KEY')
+        .single();
+
+      if (error) {
+        console.error('Error fetching API key:', error);
+        toast({
+          title: "Configuration Error",
+          description: "Failed to fetch API key. Please check your configuration.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      setApiKey(VITE_GEMINI_API_KEY);
+    };
+
+    fetchApiKey();
+  }, [toast]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!prompt.trim()) return;
 
-    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
     if (!apiKey) {
       toast({
         title: "Configuration Error",
-        description: "Gemini API key is not configured. Please check your environment variables.",
+        description: "Gemini API key is not configured. Please check your configuration.",
         variant: "destructive",
       });
       return;
