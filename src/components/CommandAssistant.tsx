@@ -49,6 +49,44 @@ export const CommandAssistant = () => {
     fetchApiKey();
   }, [toast]);
 
+  const formatResponse = (text: string) => {
+    // Split the response into lines
+    const lines = text.split('\n');
+    let formattedText = '';
+    let inCodeBlock = false;
+
+    lines.forEach((line) => {
+      // Handle step headers
+      if (line.match(/^Step \d+:/i)) {
+        formattedText += `\n**${line.trim()}**\n\n`;
+      }
+      // Handle code blocks
+      else if (line.trim().startsWith('```')) {
+        if (!inCodeBlock) {
+          formattedText += '```\n';
+          inCodeBlock = true;
+        } else {
+          formattedText += '```\n\n';
+          inCodeBlock = false;
+        }
+      }
+      // Handle additional notes
+      else if (line.trim().startsWith('Note:') || line.trim().startsWith('Additional Notes:')) {
+        formattedText += `\n**${line.trim()}**\n`;
+      }
+      // Handle regular text and code content
+      else {
+        if (inCodeBlock) {
+          formattedText += `${line}\n`;
+        } else {
+          formattedText += `${line.trim()}\n`;
+        }
+      }
+    });
+
+    return formattedText.trim();
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!prompt.trim()) return;
@@ -74,7 +112,7 @@ export const CommandAssistant = () => {
           body: JSON.stringify({
             contents: [{
               parts: [{
-                text: `You are a Termux command expert. Please provide detailed steps and commands for the following request: ${prompt}. Format your response clearly with step-by-step instructions and necessary commands.`
+                text: `You are a Termux command expert. Please provide detailed steps and commands for the following request: ${prompt}. Format your response with numbered steps, code blocks using markdown triple backticks, and additional notes at the end. Each step should be clearly labeled as "Step X:" and include a brief description followed by the relevant commands in a code block.`
               }]
             }]
           }),
@@ -88,7 +126,8 @@ export const CommandAssistant = () => {
 
       const data = await response.json();
       if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        setResponse(data.candidates[0].content.parts[0].text);
+        const formattedResponse = formatResponse(data.candidates[0].content.parts[0].text);
+        setResponse(formattedResponse);
       } else {
         throw new Error("Invalid response format");
       }
@@ -137,7 +176,7 @@ export const CommandAssistant = () => {
       {response && (
         <div className="mt-6">
           <div className="bg-terminal-black p-4 rounded-lg">
-            <pre className="whitespace-pre-wrap font-mono text-terminal-light">
+            <pre className="whitespace-pre-wrap font-mono text-terminal-light markdown-content">
               {response}
             </pre>
           </div>
