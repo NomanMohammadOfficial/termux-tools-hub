@@ -1,5 +1,7 @@
-import { Terminal, Box, Zap } from "lucide-react";
+import { Terminal, Box, Zap, Copy, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
 
 const FEATURED_TOOLS = [
   {
@@ -23,6 +25,27 @@ const FEATURED_TOOLS = [
 ];
 
 export const FeaturedTools = () => {
+  const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  const handleCopyCommand = async (command: string) => {
+    try {
+      await navigator.clipboard.writeText(command);
+      setCopiedCommand(command);
+      toast({
+        title: "Command copied!",
+        description: "The command has been copied to your clipboard.",
+      });
+      setTimeout(() => setCopiedCommand(null), 2000);
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please try copying manually.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-16">
       <h2 className="text-3xl font-mono font-bold text-terminal-light text-center mb-12">
@@ -47,9 +70,20 @@ export const FeaturedTools = () => {
             </pre>
             <Button
               variant="outline"
-              className="w-full border-terminal-green text-terminal-green hover:bg-terminal-green/10"
+              className="w-full bg-terminal-gray border-terminal-green text-terminal-light hover:bg-terminal-green hover:text-terminal-black"
+              onClick={() => handleCopyCommand(tool.command)}
             >
-              Install Now
+              {copiedCommand === tool.command ? (
+                <>
+                  <CheckCircle className="w-4 h-4 mr-2" />
+                  Copied!
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4 mr-2" />
+                  Copy Command
+                </>
+              )}
             </Button>
           </div>
         ))}
