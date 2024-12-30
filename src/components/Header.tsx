@@ -1,7 +1,6 @@
 import { Terminal, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { ThemeToggle } from "./ThemeToggle";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Header = () => {
@@ -35,11 +34,9 @@ export const Header = () => {
           <a href="#guides" className="text-terminal-light hover:text-terminal-green transition-colors">Guides</a>
           <a href="#about" className="text-terminal-light hover:text-terminal-green transition-colors">About</a>
           <a href="#contact" className="text-terminal-light hover:text-terminal-green transition-colors">Contact</a>
-          <ThemeToggle />
         </nav>
 
-        <div className="flex items-center space-x-4 md:hidden">
-          <ThemeToggle />
+        <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon">
