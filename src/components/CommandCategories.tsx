@@ -93,7 +93,7 @@ export const CommandCategories = () => {
             className={`gap-2 ${
               activeCategory === key
                 ? "bg-terminal-green text-terminal-black hover:bg-terminal-green/90"
-                : "border-terminal-green/20 text-terminal-light hover:text-terminal-green"
+                : "border-terminal-green/20 bg-terminal-gray text-terminal-light hover:bg-terminal-green hover:text-terminal-black"
             }`}
             onClick={() => setActiveCategory(key)}
           >

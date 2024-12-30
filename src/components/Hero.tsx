@@ -22,7 +22,7 @@ export const Hero = () => {
         <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">
           <Button
             size="lg"
-            className="bg-terminal-green hover:bg-terminal-green/90 text-terminal-black font-mono"
+            className="bg-terminal-green hover:bg-terminal-green/90 text-terminal-black font-mono w-full md:w-auto"
           >
             Explore Tools
             <ChevronRight className="ml-2 h-4 w-4" />
@@ -31,7 +31,7 @@ export const Hero = () => {
           <Button
             variant="outline"
             size="lg"
-            className="border-terminal-green text-terminal-green hover:bg-terminal-green/10 font-mono"
+            className="border-terminal-green bg-terminal-gray text-terminal-light hover:bg-terminal-green hover:text-terminal-black font-mono w-full md:w-auto"
           >
             Download Termux
           </Button>
