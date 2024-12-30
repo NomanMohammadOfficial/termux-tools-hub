@@ -1,21 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Terminal, Copy, Check } from "lucide-react";
-import { useState } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { ChevronRight, Terminal, Download } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
-  const [copied, setCopied] = useState(false);
-  const { toast } = useToast();
-  
-  const handleCopy = () => {
-    navigator.clipboard.writeText("pkg install termux-api");
-    setCopied(true);
-    toast({
-      title: "Command copied!",
-      description: "The installation command has been copied to your clipboard.",
-    });
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-terminal-black pt-16">
@@ -38,7 +26,7 @@ export const Hero = () => {
           <Button
             size="lg"
             className="bg-terminal-green hover:bg-terminal-green/90 text-terminal-black font-mono w-full md:w-auto"
-            onClick={() => window.location.href = '/commands'}
+            onClick={() => navigate('/commands')}
           >
             Explore Tools
             <ChevronRight className="ml-2 h-4 w-4" />
@@ -48,19 +36,10 @@ export const Hero = () => {
             variant="outline"
             size="lg"
             className="border-terminal-green hover:bg-terminal-green hover:text-terminal-black text-terminal-light font-mono w-full md:w-auto flex items-center gap-2"
-            onClick={handleCopy}
+            onClick={() => navigate('/download')}
           >
-            {copied ? (
-              <>
-                <Check className="h-4 w-4" />
-                Copied!
-              </>
-            ) : (
-              <>
-                <Copy className="h-4 w-4" />
-                Copy Install Command
-              </>
-            )}
+            <Download className="h-4 w-4" />
+            Download Termux
           </Button>
         </div>
       </div>

@@ -1,0 +1,71 @@
+import { Button } from "@/components/ui/button";
+import { Download, ArrowLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useToast } from "@/components/ui/use-toast";
+
+const DownloadTermux = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
+  const handleDownload = () => {
+    // Direct link to F-Droid's Termux APK
+    window.open("https://f-droid.org/packages/com.termux/", "_blank");
+    toast({
+      title: "Download Started",
+      description: "Your download should begin shortly from F-Droid.",
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-terminal-black py-16 px-4">
+      <div className="container mx-auto">
+        <Button
+          variant="outline"
+          className="mb-8 text-terminal-light hover:text-terminal-black"
+          onClick={() => navigate(-1)}
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
+          Back
+        </Button>
+
+        <div className="max-w-3xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-terminal-light mb-6">
+            Download Termux APK
+          </h1>
+          
+          <p className="text-lg text-terminal-light/80 mb-8">
+            Get the latest version of Termux, the powerful terminal emulator for Android. Download from F-Droid for the most up-to-date and secure version.
+          </p>
+
+          <div className="space-y-6">
+            <Button
+              size="lg"
+              className="bg-terminal-green hover:bg-terminal-green/90 text-terminal-black font-mono w-full md:w-auto"
+              onClick={handleDownload}
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Download Termux APK
+            </Button>
+
+            <div className="text-terminal-light/60 text-sm">
+              <p className="mb-2">Current Version: 0.118.0</p>
+              <p>Size: ~100MB</p>
+            </div>
+
+            <div className="bg-terminal-gray p-6 rounded-lg text-left">
+              <h2 className="text-xl font-bold text-terminal-light mb-4">Why Download from F-Droid?</h2>
+              <ul className="list-disc list-inside space-y-2 text-terminal-light/80">
+                <li>Official and secure source</li>
+                <li>Regular updates and security patches</li>
+                <li>No ads or tracking</li>
+                <li>Open-source verification</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DownloadTermux;
