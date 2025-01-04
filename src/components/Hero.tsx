@@ -35,7 +35,7 @@ export const Hero = () => {
           <Button
             variant="outline"
             size="lg"
-            className="border-terminal-green text-terminal-light hover:bg-terminal-green hover:text-terminal-black font-mono w-full md:w-auto flex items-center gap-2"
+            className="border-terminal-green bg-transparent text-terminal-green hover:bg-terminal-green hover:text-terminal-black font-mono w-full md:w-auto flex items-center gap-2"
             onClick={() => navigate('/download')}
           >
             <Download className="h-4 w-4" />
