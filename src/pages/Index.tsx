@@ -5,14 +5,25 @@ import { FeaturedTools } from "@/components/FeaturedTools";
 import { DownloadSection } from "@/components/DownloadSection";
 import { CommandAssistant } from "@/components/CommandAssistant";
 import { Newsletter } from "@/components/Newsletter";
-import { Terminal, Book, Code, Users } from "lucide-react";
+import { Features } from "@/components/Features";
 import { Footer } from "@/components/Footer";
+import { Helmet } from "react-helmet";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-terminal-black">
+      <Helmet>
+        <title>TermuxApps - Best Tools and Commands for Termux Users</title>
+        <meta
+          name="description"
+          content="Explore the ultimate collection of Termux tools, commands, and apps. Download Termux APK, generate commands, and unlock powerful features."
+        />
+        <link rel="canonical" href="https://termuxapps.com" />
+      </Helmet>
+      
       <Header />
       <Hero />
+      <Features />
       
       <section className="py-16">
         <div className="container mx-auto px-4">
