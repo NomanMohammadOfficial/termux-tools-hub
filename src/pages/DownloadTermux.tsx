@@ -8,7 +8,6 @@ const DownloadTermux = () => {
   const { toast } = useToast();
 
   const handleDownload = () => {
-    // Direct link to F-Droid's Termux APK
     window.open("https://f-droid.org/packages/com.termux/", "_blank");
     toast({
       title: "Download Started",
@@ -21,7 +20,7 @@ const DownloadTermux = () => {
       <div className="container mx-auto">
         <Button
           variant="outline"
-          className="mb-8 text-terminal-light hover:text-terminal-black"
+          className="mb-8 text-terminal-light border-terminal-green hover:bg-terminal-green hover:text-terminal-black"
           onClick={() => navigate(-1)}
         >
           <ArrowLeft className="mr-2 h-4 w-4" />

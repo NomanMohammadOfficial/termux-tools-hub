@@ -31,9 +31,30 @@ export const Header = () => {
           >
             Commands
           </Link>
-          <a href="#guides" className="text-terminal-light hover:text-terminal-green transition-colors">Guides</a>
-          <a href="#about" className="text-terminal-light hover:text-terminal-green transition-colors">About</a>
-          <a href="#contact" className="text-terminal-light hover:text-terminal-green transition-colors">Contact</a>
+          <Link 
+            to="/guides" 
+            className={`text-terminal-light hover:text-terminal-green transition-colors ${
+              location.pathname === "/guides" ? "text-terminal-green" : ""
+            }`}
+          >
+            Guides
+          </Link>
+          <Link 
+            to="/about" 
+            className={`text-terminal-light hover:text-terminal-green transition-colors ${
+              location.pathname === "/about" ? "text-terminal-green" : ""
+            }`}
+          >
+            About
+          </Link>
+          <Link 
+            to="/contact" 
+            className={`text-terminal-light hover:text-terminal-green transition-colors ${
+              location.pathname === "/contact" ? "text-terminal-green" : ""
+            }`}
+          >
+            Contact
+          </Link>
         </nav>
 
         <div className="md:hidden">
@@ -61,9 +82,30 @@ export const Header = () => {
                 >
                   Commands
                 </Link>
-                <a href="#guides" className="text-terminal-light hover:text-terminal-green transition-colors">Guides</a>
-                <a href="#about" className="text-terminal-light hover:text-terminal-green transition-colors">About</a>
-                <a href="#contact" className="text-terminal-light hover:text-terminal-green transition-colors">Contact</a>
+                <Link 
+                  to="/guides" 
+                  className={`text-terminal-light hover:text-terminal-green transition-colors ${
+                    location.pathname === "/guides" ? "text-terminal-green" : ""
+                  }`}
+                >
+                  Guides
+                </Link>
+                <Link 
+                  to="/about" 
+                  className={`text-terminal-light hover:text-terminal-green transition-colors ${
+                    location.pathname === "/about" ? "text-terminal-green" : ""
+                  }`}
+                >
+                  About
+                </Link>
+                <Link 
+                  to="/contact" 
+                  className={`text-terminal-light hover:text-terminal-green transition-colors ${
+                    location.pathname === "/contact" ? "text-terminal-green" : ""
+                  }`}
+                >
+                  Contact
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
