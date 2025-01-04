@@ -39,10 +39,18 @@ export const Footer = () => {
           <div className="space-y-4">
             <h4 className="text-lg font-mono font-bold text-terminal-light">Connect</h4>
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="hover:text-terminal-green">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+              >
                 <Github className="h-5 w-5" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:text-terminal-green">
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+              >
                 <Twitter className="h-5 w-5" />
               </Button>
             </div>
