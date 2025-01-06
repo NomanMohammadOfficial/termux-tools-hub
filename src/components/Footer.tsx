@@ -49,6 +49,16 @@ export const Footer = () => {
                   Terms of Service
                 </a>
               </li>
+              <li>
+                <a href="/disclaimer" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
+                  Disclaimer
+                </a>
+              </li>
+              <li>
+                <a href="/dmca" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
+                  DMCA
+                </a>
+              </li>
             </ul>
           </div>
           
