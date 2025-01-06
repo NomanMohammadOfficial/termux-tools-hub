@@ -1,13 +1,29 @@
-import { Copy, CheckCircle, ChevronRight } from "lucide-react";
+import { Copy, CheckCircle, ChevronRight, Terminal, Package, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 
-const INSTALLATION_COMMANDS = {
-  basic: "pkg update && pkg upgrade && pkg install wget",
-  python: "pkg install python",
-  git: "pkg install git",
-};
+const INSTALLATION_COMMANDS = [
+  {
+    category: "System Setup",
+    icon: Terminal,
+    description: "Update package lists and install essential tools",
+    command: "pkg update && pkg upgrade && pkg install wget",
+  },
+  {
+    category: "Development",
+    icon: Package,
+    description: "Install Python for development and scripting",
+    command: "pkg install python",
+  },
+  {
+    category: "Version Control",
+    icon: Shield,
+    description: "Install Git for code version control",
+    command: "pkg install git",
+  },
+];
 
 export const DownloadSection = () => {
   const [copiedCommand, setCopiedCommand] = useState<string | null>(null);
@@ -33,75 +49,69 @@ export const DownloadSection = () => {
 
   return (
     <div className="bg-terminal-gray py-16">
-      <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-mono font-bold text-terminal-light mb-6">
-          Essential Termux Commands
-        </h2>
-        
-        <p className="text-lg text-terminal-light/80 max-w-2xl mx-auto mb-8">
-          Copy these essential commands to get started with Termux on your Android device.
-        </p>
-        
-        <div className="max-w-2xl mx-auto mb-8">
-          {Object.entries(INSTALLATION_COMMANDS).map(([key, command]) => (
-            <div key={key} className="mb-4 bg-terminal-black p-4 rounded-lg">
-              <pre className="text-left mb-2 font-mono text-sm text-terminal-green overflow-x-auto">
-                <code>{command}</code>
-              </pre>
-              <Button
-                variant="outline"
-                className="bg-terminal-gray border-terminal-green text-terminal-light hover:bg-terminal-green hover:text-terminal-black"
-                onClick={() => handleCopyCommand(command)}
-              >
-                {copiedCommand === command ? (
-                  <>
-                    <CheckCircle className="w-4 h-4 mr-2" />
-                    Copied!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 mr-2" />
-                    Copy Command
-                  </>
-                )}
-              </Button>
-            </div>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-mono font-bold text-terminal-light mb-4">
+            Essential Termux Commands
+          </h2>
+          <p className="text-lg text-terminal-light/80 max-w-2xl mx-auto">
+            Get started with these fundamental commands to set up your Termux environment
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+          {INSTALLATION_COMMANDS.map((item, index) => (
+            <Card key={index} className="bg-terminal-black border-terminal-green/20 hover:border-terminal-green/40 transition-colors">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="p-2 bg-terminal-gray rounded-lg">
+                    <item.icon className="w-6 h-6 text-terminal-green" />
+                  </div>
+                  <CardTitle className="text-xl font-mono text-terminal-light">
+                    {item.category}
+                  </CardTitle>
+                </div>
+                <p className="text-terminal-light/80 text-sm">
+                  {item.description}
+                </p>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <pre className="bg-terminal-gray p-3 rounded font-mono text-sm text-terminal-green overflow-x-auto">
+                    <code>{item.command}</code>
+                  </pre>
+                  <Button
+                    variant="outline"
+                    className="w-full bg-terminal-black border-terminal-green text-terminal-light hover:bg-terminal-green hover:text-terminal-black transition-colors"
+                    onClick={() => handleCopyCommand(item.command)}
+                  >
+                    {copiedCommand === item.command ? (
+                      <>
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4 mr-2" />
+                        Copy Command
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
-        
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-          <div className="p-6 bg-terminal-black rounded-lg">
-            <div className="text-terminal-green text-2xl font-bold mb-2">1</div>
-            <h3 className="text-terminal-light font-mono font-bold mb-2">Update Packages</h3>
-            <p className="text-terminal-light/80">
-              Start by updating your package lists and upgrading existing packages
-            </p>
-          </div>
-          
-          <div className="p-6 bg-terminal-black rounded-lg">
-            <div className="text-terminal-green text-2xl font-bold mb-2">2</div>
-            <h3 className="text-terminal-light font-mono font-bold mb-2">Install Python</h3>
-            <p className="text-terminal-light/80">
-              Get Python installed to run scripts and develop applications
-            </p>
-          </div>
-          
-          <div className="p-6 bg-terminal-black rounded-lg">
-            <div className="text-terminal-green text-2xl font-bold mb-2">3</div>
-            <h3 className="text-terminal-light font-mono font-bold mb-2">Setup Git</h3>
-            <p className="text-terminal-light/80">
-              Install Git to manage your code and collaborate with others
-            </p>
-          </div>
+
+        <div className="text-center">
+          <Button
+            variant="link"
+            className="text-terminal-green hover:text-terminal-green/90 font-mono"
+          >
+            View Complete Command Guide
+            <ChevronRight className="ml-2 h-4 w-4" />
+          </Button>
         </div>
-        
-        <Button
-          variant="link"
-          className="mt-8 text-terminal-green hover:text-terminal-green/90"
-        >
-          View Full Installation Guide
-          <ChevronRight className="ml-2 h-4 w-4" />
-        </Button>
       </div>
     </div>
   );
