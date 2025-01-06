@@ -7,7 +7,7 @@ export const Footer = () => {
   return (
     <footer className="w-full bg-terminal-black/80 backdrop-blur-md border-t border-terminal-gray mt-20">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <h3 className="text-xl font-mono font-bold text-terminal-light">TermuxApps</h3>
             <p className="text-terminal-light/80">
@@ -24,13 +24,29 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#guides" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
+                <a href="/guides" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
                   Guides
                 </a>
               </li>
               <li>
-                <a href="#about" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
+                <a href="/about" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
                   About
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div className="space-y-4">
+            <h4 className="text-lg font-mono font-bold text-terminal-light">Legal</h4>
+            <ul className="space-y-2">
+              <li>
+                <a href="/privacy-policy" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="/terms" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
+                  Terms of Service
                 </a>
               </li>
             </ul>
