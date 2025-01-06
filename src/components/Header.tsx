@@ -32,14 +32,6 @@ export const Header = () => {
             Commands
           </Link>
           <Link 
-            to="/guides" 
-            className={`text-terminal-light hover:text-terminal-green transition-colors ${
-              location.pathname === "/guides" ? "text-terminal-green" : ""
-            }`}
-          >
-            Guides
-          </Link>
-          <Link 
             to="/about" 
             className={`text-terminal-light hover:text-terminal-green transition-colors ${
               location.pathname === "/about" ? "text-terminal-green" : ""
@@ -81,14 +73,6 @@ export const Header = () => {
                   }`}
                 >
                   Commands
-                </Link>
-                <Link 
-                  to="/guides" 
-                  className={`text-terminal-light hover:text-terminal-green transition-colors ${
-                    location.pathname === "/guides" ? "text-terminal-green" : ""
-                  }`}
-                >
-                  Guides
                 </Link>
                 <Link 
                   to="/about" 

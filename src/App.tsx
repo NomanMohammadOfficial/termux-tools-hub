@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import CommandList from "./pages/CommandList";
 import DownloadTermux from "./pages/DownloadTermux";
-import Guides from "./pages/Guides";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
@@ -35,7 +34,6 @@ const App: React.FC = () => {
             <Route path="/" element={<Index />} />
             <Route path="/commands" element={<CommandList />} />
             <Route path="/download" element={<DownloadTermux />} />
-            <Route path="/guides" element={<Guides />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
