@@ -1,4 +1,4 @@
-import { Github, Twitter } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 
 export const Footer = () => {
@@ -21,11 +21,6 @@ export const Footer = () => {
               <li>
                 <a href="/commands" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
                   Commands
-                </a>
-              </li>
-              <li>
-                <a href="/guides" className="text-terminal-light/80 hover:text-terminal-green transition-colors">
-                  Guides
                 </a>
               </li>
               <li>
@@ -64,21 +59,75 @@ export const Footer = () => {
           
           <div className="space-y-4">
             <h4 className="text-lg font-mono font-bold text-terminal-light">Connect</h4>
-            <div className="flex space-x-4">
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+            <div className="flex flex-wrap gap-4">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61561692724965"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-terminal-light hover:text-terminal-green transition-colors"
               >
-                <Github className="h-5 w-5" />
-              </Button>
-              <Button 
-                variant="ghost" 
-                size="icon" 
-                className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+                >
+                  <Facebook className="h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href="https://x.com/noman_webb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-terminal-light hover:text-terminal-green transition-colors"
               >
-                <Twitter className="h-5 w-5" />
-              </Button>
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+                >
+                  <Twitter className="h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href="https://www.instagram.com/noman_mohammad_official/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-terminal-light hover:text-terminal-green transition-colors"
+              >
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+                >
+                  <Instagram className="h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/nomanmohammadofficial/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-terminal-light hover:text-terminal-green transition-colors"
+              >
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </Button>
+              </a>
+              <a 
+                href="mailto:hello@termuxapps.com"
+                className="text-terminal-light hover:text-terminal-green transition-colors"
+              >
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="text-terminal-light hover:text-terminal-green hover:bg-terminal-black/40"
+                >
+                  <Mail className="h-5 w-5" />
+                </Button>
+              </a>
             </div>
           </div>
         </div>
