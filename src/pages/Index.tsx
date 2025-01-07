@@ -1,16 +1,12 @@
+import React from 'react';
+import { Helmet } from "react-helmet";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { CommandGenerator } from "@/components/CommandGenerator";
-import { FeaturedTools } from "@/components/FeaturedTools";
-import { DownloadSection } from "@/components/DownloadSection";
-import { CommandAssistant } from "@/components/CommandAssistant";
-import { Newsletter } from "@/components/Newsletter";
 import { Features } from "@/components/Features";
+import { FeaturedTools } from "@/components/FeaturedTools";
+import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
-import { Helmet } from "react-helmet";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CommandOfTheDay } from "@/components/CommandOfTheDay";
-import { Shield, Book, Terminal } from "lucide-react";
+import { Terminal, Book, Shield, Code2, Command, Settings } from "lucide-react";
 
 const Index = () => {
   return (
@@ -19,65 +15,44 @@ const Index = () => {
         <title>TermuxApps - Best Tools and Commands for Termux Users</title>
         <meta
           name="description"
-          content="Explore the ultimate collection of Termux tools, commands, and apps. Download Termux APK, generate commands, and unlock powerful features."
+          content="Comprehensive guide to Termux: Learn essential commands, tools, and best practices. Get started with Linux environment on Android with our detailed tutorials and command references."
         />
         <link rel="canonical" href="https://termuxapps.com" />
+        <meta name="keywords" content="termux commands, termux tutorial, termux guide, android terminal, linux on android, termux tools, termux packages, termux installation" />
       </Helmet>
       
       <Header />
       <Hero />
       <Features />
       
-      <section className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-mono font-bold text-terminal-light text-center mb-12">
-            Generate Termux Commands
-          </h2>
-          <CommandGenerator />
-        </div>
-      </section>
-      
+      {/* New Content Sections */}
       <section className="py-16 bg-terminal-gray">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-mono font-bold text-terminal-light text-center mb-12">
-            Why Choose TermuxApps?
+            Getting Started with Termux
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="bg-terminal-black border-terminal-green/20">
-              <CardHeader>
-                <Shield className="w-12 h-12 text-terminal-green mb-4" />
-                <CardTitle className="text-xl font-mono text-terminal-light">Trusted Resource</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-terminal-light/80">
-                  Our platform is dedicated to providing reliable, secure, and up-to-date Termux tools and commands. Every resource is carefully vetted and tested.
-                </p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-terminal-black p-6 rounded-lg border border-terminal-green/20">
+              <Terminal className="w-12 h-12 text-terminal-green mb-4" />
+              <h3 className="text-xl font-mono font-bold text-terminal-light mb-4">Basic Installation</h3>
+              <p className="text-terminal-light/80 mb-4">
+                Termux is a powerful terminal emulator for Android that brings the Linux command line to your mobile device. Start by downloading Termux from F-Droid for the most up-to-date version.
+              </p>
+              <pre className="bg-terminal-black/50 p-4 rounded font-mono text-sm text-terminal-green">
+                pkg update && pkg upgrade
+              </pre>
+            </div>
             
-            <Card className="bg-terminal-black border-terminal-green/20">
-              <CardHeader>
-                <Book className="w-12 h-12 text-terminal-green mb-4" />
-                <CardTitle className="text-xl font-mono text-terminal-light">Comprehensive Guides</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-terminal-light/80">
-                  From beginners to advanced users, our detailed guides and tutorials help you master Termux. Learn best practices and advanced techniques.
-                </p>
-              </CardContent>
-            </Card>
-            
-            <Card className="bg-terminal-black border-terminal-green/20">
-              <CardHeader>
-                <Terminal className="w-12 h-12 text-terminal-green mb-4" />
-                <CardTitle className="text-xl font-mono text-terminal-light">Active Community</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-terminal-light/80">
-                  Join our growing community of Termux enthusiasts. Share knowledge, get help, and collaborate on projects with like-minded developers.
-                </p>
-              </CardContent>
-            </Card>
+            <div className="bg-terminal-black p-6 rounded-lg border border-terminal-green/20">
+              <Book className="w-12 h-12 text-terminal-green mb-4" />
+              <h3 className="text-xl font-mono font-bold text-terminal-light mb-4">Essential Packages</h3>
+              <p className="text-terminal-light/80 mb-4">
+                After installation, enhance your Termux environment with essential development tools and utilities for a complete command-line experience.
+              </p>
+              <pre className="bg-terminal-black/50 p-4 rounded font-mono text-sm text-terminal-green">
+                pkg install git python nodejs
+              </pre>
+            </div>
           </div>
         </div>
       </section>
@@ -85,27 +60,62 @@ const Index = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-mono font-bold text-terminal-light text-center mb-12">
-            Daily Command Spotlight
+            Popular Use Cases
           </h2>
-          <div className="max-w-2xl mx-auto">
-            <CommandOfTheDay />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-terminal-gray p-6 rounded-lg">
+              <Code2 className="w-12 h-12 text-terminal-green mb-4" />
+              <h3 className="text-xl font-mono font-bold text-terminal-light mb-4">Web Development</h3>
+              <p className="text-terminal-light/80">
+                Set up a complete web development environment with Node.js, Python, and various frameworks directly on your Android device.
+              </p>
+            </div>
+            
+            <div className="bg-terminal-gray p-6 rounded-lg">
+              <Shield className="w-12 h-12 text-terminal-green mb-4" />
+              <h3 className="text-xl font-mono font-bold text-terminal-light mb-4">Security Testing</h3>
+              <p className="text-terminal-light/80">
+                Learn and practice cybersecurity concepts with various security tools and penetration testing utilities available through Termux.
+              </p>
+            </div>
+            
+            <div className="bg-terminal-gray p-6 rounded-lg">
+              <Settings className="w-12 h-12 text-terminal-green mb-4" />
+              <h3 className="text-xl font-mono font-bold text-terminal-light mb-4">System Administration</h3>
+              <p className="text-terminal-light/80">
+                Perform system administration tasks, automate processes, and manage servers directly from your Android device.
+              </p>
+            </div>
           </div>
         </div>
       </section>
-      
-      <Newsletter />
-      
+
       <section className="py-16 bg-terminal-gray">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-mono font-bold text-terminal-light text-center mb-12">
-            AI Command Assistant
+            Quick Command Reference
           </h2>
-          <CommandAssistant />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { cmd: "pkg", desc: "Package management utility for installing and updating software" },
+              { cmd: "apt", desc: "Advanced package tool for handling package installations" },
+              { cmd: "termux-setup-storage", desc: "Set up access to device storage" },
+              { cmd: "nano", desc: "Simple text editor for command line" },
+              { cmd: "wget", desc: "Tool for retrieving files using HTTP/HTTPS" },
+              { cmd: "ssh", desc: "Secure shell client for remote system access" }
+            ].map((item, index) => (
+              <div key={index} className="bg-terminal-black p-4 rounded-lg border border-terminal-green/20">
+                <Command className="w-6 h-6 text-terminal-green mb-2" />
+                <code className="text-terminal-green font-mono block mb-2">{item.cmd}</code>
+                <p className="text-terminal-light/80 text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       <FeaturedTools />
-      <DownloadSection />
+      <Newsletter />
       <Footer />
     </div>
   );
