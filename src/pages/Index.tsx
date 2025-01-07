@@ -6,7 +6,7 @@ import { Features } from "@/components/Features";
 import { FeaturedTools } from "@/components/FeaturedTools";
 import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
-import { Terminal, Book, Shield, Code2, Command, Settings, Download, Tool, Server, Database, Network, Lock } from "lucide-react";
+import { Terminal, Book, Shield, Code2, Command, Settings, Download, Server, Database, Network, Lock } from "lucide-react";
 
 const Index = () => {
   return (
@@ -52,7 +52,7 @@ const Index = () => {
             </div>
             
             <div className="bg-terminal-black p-6 rounded-lg border border-terminal-green/20">
-              <Tool className="w-12 h-12 text-terminal-green mb-4" />
+              <Settings className="w-12 h-12 text-terminal-green mb-4" />
               <h3 className="text-xl font-mono font-bold text-terminal-light mb-4">Post-Installation Setup</h3>
               <ul className="text-terminal-light/80 space-y-4">
                 <li>• Set up storage access:
