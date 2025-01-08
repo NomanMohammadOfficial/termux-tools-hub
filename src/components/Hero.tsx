@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Terminal, Download } from "lucide-react";
+import { ChevronRight, Terminal, Download, Computer } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const Hero = () => {
@@ -40,6 +40,16 @@ export const Hero = () => {
           >
             <Download className="h-4 w-4" />
             Download Termux
+          </Button>
+
+          <Button
+            variant="outline"
+            size="lg"
+            className="border-terminal-green bg-transparent text-terminal-green hover:bg-terminal-green hover:text-terminal-black font-mono w-full md:w-auto flex items-center gap-2"
+            onClick={() => navigate('/pc')}
+          >
+            <Computer className="h-4 w-4" />
+            Termux for PC
           </Button>
         </div>
       </div>
