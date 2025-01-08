@@ -1,4 +1,5 @@
 import { Layout } from "@/components/Layout";
+import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
 
 const About = () => {
   return (
