@@ -1,11 +1,11 @@
-import React from 'react';
+import { Layout } from "@/components/Layout";
 import { Helmet } from "react-helmet";
 import { Computer, Terminal, Shield, Download, Settings } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TermuxPC = () => {
   return (
-    <div className="min-h-screen bg-terminal-black">
+    <Layout>
       <Helmet>
         <title>Termux for PC - Run Android Terminal Emulator on Windows & Linux</title>
         <meta
@@ -19,7 +19,6 @@ const TermuxPC = () => {
         <meta property="og:url" content="https://termuxapps.com/pc" />
         <meta property="og:type" content="article" />
       </Helmet>
-
       <div className="container mx-auto px-4 py-16">
         <h1 className="text-4xl md:text-6xl font-bold text-terminal-light text-center mb-8">
           Run Termux on Your PC
@@ -97,7 +96,7 @@ const TermuxPC = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

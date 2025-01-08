@@ -1,10 +1,9 @@
+import { Layout } from "@/components/Layout";
+import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Download, ArrowLeft } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 
 const DownloadTermux = () => {
-  const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleDownload = () => {
@@ -16,18 +15,8 @@ const DownloadTermux = () => {
   };
 
   return (
-    <div className="min-h-screen bg-terminal-black py-16 px-4">
-      <div className="container mx-auto">
-        <Button
-          variant="outline"
-          className="mb-8 bg-transparent text-terminal-green border-terminal-green hover:bg-terminal-green hover:text-terminal-black"
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back
-        </Button>
-
-        <div className="max-w-3xl mx-auto text-center">
+    <Layout>
+      <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold text-terminal-light mb-6">
             Download Termux APK
           </h1>
@@ -61,9 +50,8 @@ const DownloadTermux = () => {
               </ul>
             </div>
           </div>
-        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

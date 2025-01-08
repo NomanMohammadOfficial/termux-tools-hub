@@ -1,8 +1,8 @@
+import { Layout } from "@/components/Layout";
 import { CommandSearch } from "@/components/CommandSearch";
 import { CommandCategories } from "@/components/CommandCategories";
 import { CommandOfTheDay } from "@/components/CommandOfTheDay";
 import { TableOfContents } from "@/components/TableOfContents";
-import { Header } from "@/components/Header";
 import { Helmet } from "react-helmet";
 
 // Define all commands for SEO purposes
@@ -47,7 +47,7 @@ const CommandList = () => {
   };
 
   return (
-    <div className="min-h-screen bg-terminal-black text-terminal-light">
+    <Layout>
       <Helmet>
         <title>Termux Commands List - Complete Guide to Linux Commands in Termux</title>
         <meta
@@ -73,56 +73,53 @@ const CommandList = () => {
         <meta name="twitter:description" content="Comprehensive guide to Linux commands in Termux. Learn file management, networking, and system administration commands." />
       </Helmet>
 
-      <Header />
-      <main className="container mx-auto px-4 pt-24 pb-16">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <section className="text-center space-y-4">
-            <h1 className="text-3xl md:text-4xl font-mono font-bold">
-              Termux Command List – Comprehensive Guide for Beginners and Experts
-            </h1>
-            <p className="text-lg text-terminal-light/80">
-              Explore, Learn, and Master the Most Useful Termux Commands to Unlock Endless Possibilities
-            </p>
-          </section>
+      <div className="max-w-4xl mx-auto space-y-8">
+        <section className="text-center space-y-4">
+          <h1 className="text-3xl md:text-4xl font-mono font-bold">
+            Termux Command List – Comprehensive Guide for Beginners and Experts
+          </h1>
+          <p className="text-lg text-terminal-light/80">
+            Explore, Learn, and Master the Most Useful Termux Commands to Unlock Endless Possibilities
+          </p>
+        </section>
 
-          {/* Add semantic HTML for better SEO */}
-          <article className="prose prose-invert max-w-none">
-            <p className="lead">
-              Welcome to our comprehensive guide to Termux commands. Whether you're a beginner or an experienced user,
-              this guide covers everything from basic file operations to advanced networking commands.
-              Each command comes with detailed explanations and practical examples.
-            </p>
-          </article>
+        {/* Add semantic HTML for better SEO */}
+        <article className="prose prose-invert max-w-none">
+          <p className="lead">
+            Welcome to our comprehensive guide to Termux commands. Whether you're a beginner or an experienced user,
+            this guide covers everything from basic file operations to advanced networking commands.
+            Each command comes with detailed explanations and practical examples.
+          </p>
+        </article>
 
-          <CommandSearch />
-          <CommandOfTheDay />
-          <TableOfContents />
-          <CommandCategories />
+        <CommandSearch />
+        <CommandOfTheDay />
+        <TableOfContents />
+        <CommandCategories />
 
-          {/* Add detailed command explanations for SEO */}
-          <section className="mt-12 space-y-8">
-            {Object.entries(ALL_COMMANDS).map(([category, commands]) => (
-              <article key={category} className="prose prose-invert max-w-none">
-                <h2 className="text-2xl font-mono font-bold mb-4" id={category}>
-                  {category.charAt(0).toUpperCase() + category.slice(1)} Commands
-                </h2>
-                {commands.map((cmd) => (
-                  <div key={cmd.name} className="mb-8">
-                    <h3 className="text-xl font-mono" id={cmd.name}>
-                      {cmd.name} Command in Termux
-                    </h3>
-                    <p>{cmd.longDescription}</p>
-                    <pre className="bg-terminal-gray p-3 rounded">
-                      <code>{cmd.usage}</code>
-                    </pre>
-                  </div>
-                ))}
-              </article>
-            ))}
-          </section>
-        </div>
-      </main>
-    </div>
+        {/* Add detailed command explanations for SEO */}
+        <section className="mt-12 space-y-8">
+          {Object.entries(ALL_COMMANDS).map(([category, commands]) => (
+            <article key={category} className="prose prose-invert max-w-none">
+              <h2 className="text-2xl font-mono font-bold mb-4" id={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)} Commands
+              </h2>
+              {commands.map((cmd) => (
+                <div key={cmd.name} className="mb-8">
+                  <h3 className="text-xl font-mono" id={cmd.name}>
+                    {cmd.name} Command in Termux
+                  </h3>
+                  <p>{cmd.longDescription}</p>
+                  <pre className="bg-terminal-gray p-3 rounded">
+                    <code>{cmd.usage}</code>
+                  </pre>
+                </div>
+              ))}
+            </article>
+          ))}
+        </section>
+      </div>
+    </Layout>
   );
 };
 

@@ -1,19 +1,15 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Helmet } from "react-helmet";
 
 const Terms = () => {
   return (
-    <div className="min-h-screen bg-terminal-black">
+    <Layout>
       <Helmet>
         <title>Terms of Service - TermuxApps</title>
         <meta name="description" content="Terms of service and usage guidelines for TermuxApps - Your trusted resource for Termux tools and commands." />
         <link rel="canonical" href="https://termuxapps.com/terms" />
       </Helmet>
-
-      <Header />
-      <main className="container mx-auto px-4 pt-24 pb-16">
-        <div className="max-w-4xl mx-auto prose prose-invert">
+      <div className="max-w-4xl mx-auto prose prose-invert">
           <h1 className="text-3xl md:text-4xl font-mono font-bold text-terminal-light mb-8">Terms of Service</h1>
           
           <section className="mb-8">
@@ -63,10 +59,8 @@ const Terms = () => {
               If you have any questions about these Terms, please contact us through our <a href="/contact" className="text-terminal-green hover:underline">contact page</a>.
             </p>
           </section>
-        </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 

@@ -1,19 +1,15 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
+import { Layout } from "@/components/Layout";
 import { Helmet } from "react-helmet";
 
 const Disclaimer = () => {
   return (
-    <div className="min-h-screen bg-terminal-black">
+    <Layout>
       <Helmet>
         <title>Disclaimer - TermuxApps</title>
         <meta name="description" content="Legal disclaimer and terms of use for TermuxApps - Your trusted resource for Termux tools and commands." />
         <link rel="canonical" href="https://termuxapps.com/disclaimer" />
       </Helmet>
-
-      <Header />
-      <main className="container mx-auto px-4 pt-24 pb-16">
-        <div className="max-w-4xl mx-auto prose prose-invert">
+      <div className="max-w-4xl mx-auto prose prose-invert">
           <h1 className="text-3xl md:text-4xl font-mono font-bold text-terminal-light mb-8">Disclaimer</h1>
           
           <section className="mb-8">
@@ -43,10 +39,8 @@ const Disclaimer = () => {
               Every effort is made to keep the website up and running smoothly. However, we take no responsibility for, and will not be liable for, the website being temporarily unavailable due to technical issues beyond our control.
             </p>
           </section>
-        </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </Layout>
   );
 };
 
