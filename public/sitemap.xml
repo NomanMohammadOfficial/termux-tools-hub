@@ -19,6 +19,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://termuxapps.com/pc</loc>
+    <lastmod>2024-03-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://termuxapps.com/about</loc>
     <lastmod>2024-03-08</lastmod>
     <changefreq>monthly</changefreq>
