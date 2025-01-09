@@ -73,12 +73,12 @@ const CommandList = () => {
         <meta name="twitter:description" content="Comprehensive guide to Linux commands in Termux. Learn file management, networking, and system administration commands." />
       </Helmet>
 
-      <div className="max-w-4xl mx-auto space-y-8">
+      <div className="max-w-4xl mx-auto space-y-8 text-white">
         <section className="text-center space-y-4">
           <h1 className="text-3xl md:text-4xl font-mono font-bold">
             Termux Command List – Comprehensive Guide for Beginners and Experts
           </h1>
-          <p className="text-lg text-terminal-light/80">
+          <p className="text-lg opacity-80">
             Explore, Learn, and Master the Most Useful Termux Commands to Unlock Endless Possibilities
           </p>
         </section>
