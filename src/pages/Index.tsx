@@ -13,33 +13,95 @@ import { Footer } from "@/components/Footer";
 import { CommandCategories } from "@/components/CommandCategories";
 import { CommandGenerator } from "@/components/CommandGenerator";
 import { CommandOfTheDay } from "@/components/CommandOfTheDay";
+import { Terminal, Bot, Cpu } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-terminal-black">
       <Helmet>
-        <title>TermuxApps - Best Tools and Commands for Termux Users</title>
+        <title>TermuxApps - AI-Powered Terminal Commands & Linux Tools</title>
         <meta
           name="description"
-          content="Comprehensive guide to Termux: Learn essential commands, tools, and best practices. Get started with Linux environment on Android with our detailed tutorials and command references."
+          content="Experience the power of AI in your terminal with TermuxApps. Generate Linux commands, get smart terminal suggestions, and master Termux with our AI-powered tools. Perfect for both beginners and advanced users."
         />
         <link rel="canonical" href="https://termuxapps.com" />
         <meta 
           name="keywords" 
-          content="termux commands, termux tutorial, termux guide, android terminal, linux on android, termux tools, termux packages, termux installation" 
+          content="terminal gpt, ai termux, linux ai terminal, termux ai assistant, terminal command generator, ai linux commands, smart terminal, termux commands, termux tutorial, termux guide, android terminal, linux on android, termux tools, termux packages, termux installation" 
         />
+        {/* OpenGraph tags for better social sharing */}
+        <meta property="og:title" content="TermuxApps - AI-Powered Terminal Commands & Linux Tools" />
+        <meta property="og:description" content="Experience the power of AI in your terminal. Generate Linux commands, get smart suggestions, and master Termux with our AI tools." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://termuxapps.com" />
+        {/* Twitter Card tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="TermuxApps - AI-Powered Terminal Commands & Linux Tools" />
+        <meta name="twitter:description" content="Experience the power of AI in your terminal. Generate Linux commands and master Termux with AI assistance." />
       </Helmet>
       
       <Header />
       <Hero />
       <Features />
+
+      {/* AI Command Generator Featured Section */}
+      <section className="py-16 bg-terminal-black border-y border-terminal-green/20">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Bot className="w-8 h-8 text-terminal-green" />
+            <h2 className="text-3xl font-mono font-bold text-terminal-light text-center">
+              AI-Powered Command Generation
+            </h2>
+          </div>
+          <p className="text-center text-terminal-light/80 max-w-2xl mx-auto mb-12">
+            Experience the future of terminal interaction with our AI command generator. Get intelligent suggestions, learn command usage, and streamline your workflow with AI assistance.
+          </p>
+          <CommandGenerator />
+        </div>
+      </section>
+
       <InstallationGuide />
-      <CommandOfTheDay />
-      <CommandCategories />
+      
+      {/* Daily Command Learning Section */}
+      <section className="py-16 bg-terminal-gray">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Terminal className="w-8 h-8 text-terminal-green" />
+            <h2 className="text-3xl font-mono font-bold text-terminal-light text-center">
+              Master Terminal Commands Daily
+            </h2>
+          </div>
+          <p className="text-center text-terminal-light/80 max-w-2xl mx-auto mb-12">
+            Enhance your terminal skills with our curated command of the day and comprehensive command categories.
+          </p>
+          <div className="grid grid-cols-1 gap-8">
+            <CommandOfTheDay />
+            <CommandCategories />
+          </div>
+        </div>
+      </section>
+
       <UseCases />
-      <PackageManagement />
-      <AdvancedFeatures />
-      <CommandGenerator />
+      
+      {/* Advanced Terminal Mastery Section */}
+      <section className="py-16 bg-terminal-black border-y border-terminal-green/20">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Cpu className="w-8 h-8 text-terminal-green" />
+            <h2 className="text-3xl font-mono font-bold text-terminal-light text-center">
+              Advanced Terminal Mastery
+            </h2>
+          </div>
+          <p className="text-center text-terminal-light/80 max-w-2xl mx-auto mb-12">
+            Take your terminal skills to the next level with our advanced features and package management guides.
+          </p>
+          <div className="space-y-16">
+            <PackageManagement />
+            <AdvancedFeatures />
+          </div>
+        </div>
+      </section>
+
       <FeaturedTools />
       <Newsletter />
       <Footer />
