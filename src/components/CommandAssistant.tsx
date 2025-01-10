@@ -94,11 +94,12 @@ export const CommandAssistant = () => {
             contents: [{
               parts: [{
                 text: `You are a Termux command expert. The user has requested: "${trimmedPrompt}". 
-                If this is a greeting or unclear request, respond with "Please provide a specific command or task you'd like help with in Termux."
-                Otherwise, provide detailed steps and commands for completing this task.
-                Format your response with numbered steps, code blocks using markdown triple backticks, and additional notes at the end. 
-                Each step should be clearly labeled as "Step X:" and include a brief description followed by the relevant commands in a code block.
-                Only provide Termux-related commands and information.`
+                Format your response with clear numbered steps and code blocks.
+                Each step should start with "Step X:" followed by a brief description.
+                Put commands in code blocks using triple backticks.
+                Add relevant notes at the end if needed.
+                Only provide Termux-related commands and information.
+                If the request is unclear or just a greeting, respond with "Please provide a specific command or task you'd like help with in Termux."`
               }]
             }]
           }),
