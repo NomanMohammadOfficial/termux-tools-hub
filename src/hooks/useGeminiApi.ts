@@ -59,21 +59,23 @@ export const useGeminiApi = () => {
           contents: [{
             parts: [{
               text: `You are a professional technical writer specializing in Termux tutorials. 
-              Create a detailed, SEO-optimized blog post about: "${prompt}"
+              Generate a blog post about: "${prompt}"
               
-              Return ONLY a valid JSON object in this exact format, with no additional text, markdown, or formatting:
+              IMPORTANT: Return a pure JSON object with NO markdown delimiters, NO code blocks, and NO additional formatting.
+              Use this exact structure:
               {
-                "title": "Clear, SEO-friendly title",
-                "meta_description": "Compelling meta description under 160 characters",
-                "keywords": ["keyword1", "keyword2", "keyword3"],
-                "content": "Full blog post content with proper markdown formatting"
+                "title": "string (clear, SEO-friendly title)",
+                "meta_description": "string (under 160 characters)",
+                "keywords": ["string", "string", "string"],
+                "content": "string (blog content with simple formatting)"
               }
               
-              Ensure:
-              1. The response is pure JSON with no markdown delimiters
-              2. Content uses proper markdown formatting
-              3. All JSON values are properly escaped strings
-              4. No backticks or code blocks in the JSON structure`
+              Rules:
+              1. Do NOT include any markdown delimiters (```, etc.)
+              2. Do NOT use any special formatting
+              3. Escape all quotes and special characters in JSON strings
+              4. Return ONLY the JSON object, nothing else
+              5. Keep content formatting minimal, using only basic punctuation`
             }]
           }]
         }),
@@ -138,6 +140,11 @@ Only provide Termux-related commands and information.`
 
   const saveBlogPost = async (blogData: any) => {
     try {
+      // Clean the response by removing any markdown delimiters or formatting
+      const cleanContent = blogData.content.replace(/```[^`]*```/g, '')
+        .replace(/`/g, '')
+        .trim();
+
       const tempSlug = blogData.title
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
@@ -147,7 +154,7 @@ Only provide Termux-related commands and information.`
         .from('ai_blog_posts')
         .insert({
           title: blogData.title,
-          content: blogData.content,
+          content: cleanContent,
           meta_description: blogData.meta_description,
           keywords: blogData.keywords,
           original_query: blogData.original_query,
