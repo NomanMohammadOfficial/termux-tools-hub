@@ -140,15 +140,23 @@ Only provide Termux-related commands and information.`
 
   const saveBlogPost = async (blogData: any) => {
     try {
+      // Generate a temporary slug from the title
+      const tempSlug = blogData.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+
       const { data, error } = await supabase
         .from('ai_blog_posts')
-        .insert([{
+        .insert({
           title: blogData.title,
           content: blogData.content,
           meta_description: blogData.meta_description,
           keywords: blogData.keywords,
           original_query: blogData.original_query,
-        }])
+          slug: tempSlug, // Add the temporary slug
+          status: 'pending'
+        })
         .select()
         .single();
 
