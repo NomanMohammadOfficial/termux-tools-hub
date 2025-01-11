@@ -61,7 +61,7 @@ export const useGeminiApi = () => {
               text: `You are a professional technical writer specializing in Termux tutorials. 
               Create a detailed, SEO-optimized blog post about: "${prompt}"
               
-              Format the response exactly like this:
+              Return ONLY a valid JSON object in this exact format, with no additional text, markdown, or formatting:
               {
                 "title": "Clear, SEO-friendly title",
                 "meta_description": "Compelling meta description under 160 characters",
@@ -69,13 +69,11 @@ export const useGeminiApi = () => {
                 "content": "Full blog post content with proper markdown formatting"
               }
               
-              Make sure the content is:
-              1. Technically accurate
-              2. Well-structured with headings
-              3. Easy to follow
-              4. Includes code examples where relevant
-              5. Has a clear introduction and conclusion
-              6. Uses proper markdown formatting`
+              Ensure:
+              1. The response is pure JSON with no markdown delimiters
+              2. Content uses proper markdown formatting
+              3. All JSON values are properly escaped strings
+              4. No backticks or code blocks in the JSON structure`
             }]
           }]
         }),
@@ -140,7 +138,6 @@ Only provide Termux-related commands and information.`
 
   const saveBlogPost = async (blogData: any) => {
     try {
-      // Generate a temporary slug from the title
       const tempSlug = blogData.title
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
@@ -154,7 +151,7 @@ Only provide Termux-related commands and information.`
           meta_description: blogData.meta_description,
           keywords: blogData.keywords,
           original_query: blogData.original_query,
-          slug: tempSlug, // Add the temporary slug
+          slug: tempSlug,
           status: 'pending'
         })
         .select()
