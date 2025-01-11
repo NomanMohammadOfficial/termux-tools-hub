@@ -93,13 +93,24 @@ export const CommandAssistant = () => {
           body: JSON.stringify({
             contents: [{
               parts: [{
-                text: `You are a Termux command expert. The user has requested: "${trimmedPrompt}". 
-                Format your response with clear numbered steps and code blocks.
-                Each step should start with "Step X:" followed by a brief description.
-                Put commands in code blocks using triple backticks.
-                Add relevant notes at the end if needed.
-                Only provide Termux-related commands and information.
-                If the request is unclear or just a greeting, respond with "Please provide a specific command or task you'd like help with in Termux."`
+                text: `You are a Termux command expert. Provide a response in this exact format:
+
+Step 1: [Brief description]
+\`\`\`
+[command]
+\`\`\`
+
+Step 2: [Brief description]
+\`\`\`
+[command]
+\`\`\`
+
+Note: [Add any relevant notes or warnings]
+
+For this user request: "${trimmedPrompt}"
+
+If the request is unclear, respond only with the text: "Please provide a specific command or task you'd like help with in Termux."
+Only provide Termux-related commands and information.`
               }]
             }]
           }),
@@ -112,11 +123,20 @@ export const CommandAssistant = () => {
       }
 
       const data = await response.json();
-      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
-        const formattedResponse = formatResponse(data.candidates[0].content.parts[0].text);
-        setResponse(formattedResponse);
+      
+      // Validate the response structure
+      if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+        throw new Error("Invalid API response structure");
+      }
+
+      const responseText = data.candidates[0].content.parts[0].text;
+      
+      // Check if the response is too short or doesn't contain steps
+      if (responseText.length < 10 || !responseText.includes('Step')) {
+        setResponse(`<note>Please provide a specific command or task you'd like help with in Termux.</note>`);
       } else {
-        throw new Error("Invalid response format");
+        const formattedResponse = formatResponse(responseText);
+        setResponse(formattedResponse);
       }
     } catch (error) {
       console.error('Error:', error);
