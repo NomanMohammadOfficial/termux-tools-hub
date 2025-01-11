@@ -58,24 +58,22 @@ export const useGeminiApi = () => {
         body: JSON.stringify({
           contents: [{
             parts: [{
-              text: `You are a professional technical writer specializing in Termux tutorials. 
-              Generate a blog post about: "${prompt}"
-              
-              IMPORTANT: Return a pure JSON object with NO markdown delimiters, NO code blocks, and NO additional formatting.
-              Use this exact structure:
-              {
-                "title": "string (clear, SEO-friendly title)",
-                "meta_description": "string (under 160 characters)",
-                "keywords": ["string", "string", "string"],
-                "content": "string (blog content with simple formatting)"
-              }
-              
-              Rules:
-              1. Do NOT include any markdown delimiters (```, etc.)
-              2. Do NOT use any special formatting
-              3. Escape all quotes and special characters in JSON strings
-              4. Return ONLY the JSON object, nothing else
-              5. Keep content formatting minimal, using only basic punctuation`
+              text: `You are a professional technical writer specializing in Termux tutorials. Generate a blog post about: "${prompt}"
+
+IMPORTANT: Return a pure JSON object with no additional formatting or delimiters.
+Use this structure:
+{
+  "title": "string (clear SEO-friendly title)",
+  "meta_description": "string (under 160 characters)",
+  "keywords": ["string", "string", "string"],
+  "content": "string (blog content with basic formatting)"
+}
+
+Rules:
+1. Return only valid JSON
+2. No markdown or special formatting
+3. Escape all quotes
+4. Keep content simple and clean`
             }]
           }]
         }),
@@ -87,8 +85,7 @@ export const useGeminiApi = () => {
       throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
     }
 
-    const data = await response.json();
-    return data;
+    return response.json();
   };
 
   const generateResponse = async (prompt: string) => {
