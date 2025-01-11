@@ -7,15 +7,16 @@ interface PromptFormProps {
   setPrompt: (prompt: string) => void;
   onSubmit: (e: React.FormEvent) => void;
   isLoading: boolean;
+  placeholder?: string;
 }
 
-export const PromptForm = ({ prompt, setPrompt, onSubmit, isLoading }: PromptFormProps) => {
+export const PromptForm = ({ prompt, setPrompt, onSubmit, isLoading, placeholder }: PromptFormProps) => {
   return (
     <form onSubmit={onSubmit} className="space-y-4">
       <Textarea
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
-        placeholder="What would you like to do in Termux? (e.g., 'How to set up Python development environment')"
+        placeholder={placeholder || "What would you like to do in Termux? (e.g., 'How to set up Python development environment')"}
         className="bg-terminal-black border-terminal-green/20 text-terminal-light placeholder:text-terminal-light/70"
       />
       <Button 
@@ -28,7 +29,7 @@ export const PromptForm = ({ prompt, setPrompt, onSubmit, isLoading }: PromptFor
         ) : (
           <>
             <Send className="w-4 h-4 mr-2" />
-            Get Commands
+            {prompt ? "Generate" : "Get Commands"}
           </>
         )}
       </Button>

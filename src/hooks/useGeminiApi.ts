@@ -43,6 +43,54 @@ export const useGeminiApi = () => {
     fetchApiKey();
   }, [toast]);
 
+  const generateBlogPost = async (prompt: string) => {
+    if (!apiKey) {
+      throw new Error("Gemini API key is not configured");
+    }
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: `You are a professional technical writer specializing in Termux tutorials. 
+              Create a detailed, SEO-optimized blog post about: "${prompt}"
+              
+              Format the response exactly like this:
+              {
+                "title": "Clear, SEO-friendly title",
+                "meta_description": "Compelling meta description under 160 characters",
+                "keywords": ["keyword1", "keyword2", "keyword3"],
+                "content": "Full blog post content with proper markdown formatting"
+              }
+              
+              Make sure the content is:
+              1. Technically accurate
+              2. Well-structured with headings
+              3. Easy to follow
+              4. Includes code examples where relevant
+              5. Has a clear introduction and conclusion
+              6. Uses proper markdown formatting`
+            }]
+          }]
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+  };
+
   const generateResponse = async (prompt: string) => {
     if (!apiKey) {
       throw new Error("Gemini API key is not configured");
@@ -90,5 +138,27 @@ Only provide Termux-related commands and information.`
     return response.json();
   };
 
-  return { apiKey, generateResponse };
+  const saveBlogPost = async (blogData: any) => {
+    try {
+      const { data, error } = await supabase
+        .from('ai_blog_posts')
+        .insert([{
+          title: blogData.title,
+          content: blogData.content,
+          meta_description: blogData.meta_description,
+          keywords: blogData.keywords,
+          original_query: blogData.original_query,
+        }])
+        .select()
+        .single();
+
+      if (error) throw error;
+      return data;
+    } catch (error) {
+      console.error('Error saving blog post:', error);
+      throw error;
+    }
+  };
+
+  return { apiKey, generateResponse, generateBlogPost, saveBlogPost };
 };

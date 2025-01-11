@@ -9,6 +9,45 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      ai_blog_posts: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          keywords: string[]
+          meta_description: string
+          original_query: string
+          slug: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          keywords: string[]
+          meta_description: string
+          original_query: string
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          keywords?: string[]
+          meta_description?: string
+          original_query?: string
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       newsletter_subscriptions: {
         Row: {
           created_at: string
@@ -32,7 +71,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      generate_slug: {
+        Args: {
+          title: string
+        }
+        Returns: string
+      }
     }
     Enums: {
       [_ in never]: never
