@@ -13,7 +13,7 @@ import { Footer } from "@/components/Footer";
 import { CommandCategories } from "@/components/CommandCategories";
 import { CommandGenerator } from "@/components/CommandGenerator";
 import { CommandOfTheDay } from "@/components/CommandOfTheDay";
-import { CommandAssistant } from "@/components/CommandAssistant";
+import { TermuxAICommands } from "@/components/TermuxAICommands";
 import { Terminal, Bot, Cpu } from "lucide-react";
 
 const Index = () => {
@@ -51,13 +51,13 @@ const Index = () => {
           <div className="flex items-center justify-center gap-3 mb-8">
             <Bot className="w-8 h-8 text-terminal-green" />
             <h2 className="text-3xl font-mono font-bold text-terminal-light text-center">
-              AI Command Assistant
+              Termux AI Command Assistant
             </h2>
           </div>
           <p className="text-center text-terminal-light/80 max-w-2xl mx-auto mb-12">
             Get instant, AI-powered help with Termux commands. Our Gemini-powered assistant provides clear, concise explanations and ready-to-use commands for any task you need to accomplish.
           </p>
-          <CommandAssistant />
+          <TermuxAICommands />
         </div>
       </section>
 

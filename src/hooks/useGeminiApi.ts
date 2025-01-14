@@ -43,48 +43,6 @@ export const useGeminiApi = () => {
     fetchApiKey();
   }, [toast]);
 
-  const generateBlogPost = async (prompt: string) => {
-    if (!apiKey) {
-      throw new Error("Gemini API key is not configured");
-    }
-
-    try {
-      const response = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            contents: [{
-              parts: [{
-                text: `Generate a blog post about: "${prompt}"
-Return a JSON object with this structure:
-{
-  "title": "string (clear SEO-friendly title)",
-  "meta_description": "string (under 160 characters)",
-  "keywords": ["string"],
-  "content": "string (blog content)"
-}`
-              }]
-            }]
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
-      }
-
-      return response.json();
-    } catch (error) {
-      console.error('Error in generateBlogPost:', error);
-      throw error;
-    }
-  };
-
   const generateResponse = async (prompt: string) => {
     if (!apiKey) {
       throw new Error("Gemini API key is not configured");
@@ -137,39 +95,5 @@ Only provide Termux-related commands and information.`
     }
   };
 
-  const saveBlogPost = async (blogData: any) => {
-    try {
-      // Clean the response by removing any markdown delimiters or formatting
-      const cleanContent = blogData.content.replace(/```[^`]*```/g, '')
-        .replace(/`/g, '')
-        .trim();
-
-      const tempSlug = blogData.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '');
-
-      const { data, error } = await supabase
-        .from('ai_blog_posts')
-        .insert({
-          title: blogData.title,
-          content: cleanContent,
-          meta_description: blogData.meta_description,
-          keywords: blogData.keywords,
-          original_query: blogData.original_query,
-          slug: tempSlug,
-          status: 'pending'
-        })
-        .select()
-        .single();
-
-      if (error) throw error;
-      return data;
-    } catch (error) {
-      console.error('Error saving blog post:', error);
-      throw error;
-    }
-  };
-
-  return { apiKey, generateResponse, generateBlogPost, saveBlogPost };
+  return { apiKey, generateResponse };
 };
