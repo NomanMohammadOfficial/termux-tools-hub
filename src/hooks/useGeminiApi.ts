@@ -48,44 +48,41 @@ export const useGeminiApi = () => {
       throw new Error("Gemini API key is not configured");
     }
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `You are a professional technical writer specializing in Termux tutorials. Generate a blog post about: "${prompt}"
-
-IMPORTANT: Return a pure JSON object with no additional formatting or delimiters.
-Use this structure:
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: `Generate a blog post about: "${prompt}"
+Return a JSON object with this structure:
 {
   "title": "string (clear SEO-friendly title)",
   "meta_description": "string (under 160 characters)",
-  "keywords": ["string", "string", "string"],
-  "content": "string (blog content with basic formatting)"
-}
-
-Rules:
-1. Return only valid JSON
-2. No markdown or special formatting
-3. Escape all quotes
-4. Keep content simple and clean`
+  "keywords": ["string"],
+  "content": "string (blog content)"
+}`
+              }]
             }]
-          }]
-        }),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
       }
-    );
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
+      return response.json();
+    } catch (error) {
+      console.error('Error in generateBlogPost:', error);
+      throw error;
     }
-
-    return response.json();
   };
 
   const generateResponse = async (prompt: string) => {
@@ -93,17 +90,18 @@ Rules:
       throw new Error("Gemini API key is not configured");
     }
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [{
-            parts: [{
-              text: `You are a Termux command expert. Provide a response in this exact format:
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [{
+              parts: [{
+                text: `You are a Termux command expert. Provide a response in this exact format:
 
 Step 1: [Brief description]
 \`\`\`
@@ -121,18 +119,22 @@ For this user request: "${prompt}"
 
 If the request is unclear, respond only with the text: "Please provide a specific command or task you'd like help with in Termux."
 Only provide Termux-related commands and information.`
+              }]
             }]
-          }]
-        }),
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
       }
-    );
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
+      return response.json();
+    } catch (error) {
+      console.error('Error in generateResponse:', error);
+      throw error;
     }
-
-    return response.json();
   };
 
   const saveBlogPost = async (blogData: any) => {

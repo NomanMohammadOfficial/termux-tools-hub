@@ -1,66 +1,41 @@
-import { serve } from "https://deno.land/std@0.177.0/http/server.ts"
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: corsHeaders
-    })
-  }
-
-  // Only allow POST requests
-  if (req.method !== 'POST') {
-    return new Response(JSON.stringify({
-      error: 'Method not allowed'
-    }), {
-      status: 405,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-    })
+    return new Response('ok', { headers: corsHeaders })
   }
 
   try {
-    console.log('Fetching Gemini API key from environment variables...')
-    const apiKey = Deno.env.get('VITE_GEMINI_API_KEY')
+    const key = Deno.env.get('GEMINI_API_KEY')
     
-    if (!apiKey) {
-      console.error('API key not found in environment variables')
+    if (!key) {
       return new Response(
-        JSON.stringify({
-          error: 'API key not configured in environment variables'
-        }),
-        {
+        JSON.stringify({ error: 'API key not configured' }),
+        { 
           status: 500,
-          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-        }
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
       )
     }
 
-    console.log('Successfully retrieved API key')
     return new Response(
-      JSON.stringify({ key: apiKey }),
-      {
-        status: 200,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
+      JSON.stringify({ key }),
+      { 
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      },
     )
   } catch (error) {
-    console.error('Error in getGeminiKey function:', error.message)
     return new Response(
-      JSON.stringify({
-        error: 'Internal server error',
-        details: error.message
-      }),
-      {
+      JSON.stringify({ error: error.message }),
+      { 
         status: 500,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      }
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      },
     )
   }
 })
