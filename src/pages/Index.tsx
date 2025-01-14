@@ -14,7 +14,8 @@ import { CommandCategories } from "@/components/CommandCategories";
 import { CommandGenerator } from "@/components/CommandGenerator";
 import { CommandOfTheDay } from "@/components/CommandOfTheDay";
 import { TermuxAICommands } from "@/components/TermuxAICommands";
-import { Terminal, Bot, Cpu } from "lucide-react";
+import { BlogList } from "@/components/BlogList";
+import { Terminal, Bot, Cpu, BookOpen } from "lucide-react";
 
 const Index = () => {
   return (
@@ -79,6 +80,22 @@ const Index = () => {
 
       <InstallationGuide />
       
+      {/* Blog Section */}
+      <section className="py-16 bg-terminal-black border-y border-terminal-green/20">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <BookOpen className="w-8 h-8 text-terminal-green" />
+            <h2 className="text-3xl font-mono font-bold text-terminal-light text-center">
+              Latest Tutorials & Guides
+            </h2>
+          </div>
+          <p className="text-center text-terminal-light/80 max-w-2xl mx-auto mb-12">
+            Explore our comprehensive collection of Termux tutorials, guides, and best practices to enhance your terminal skills.
+          </p>
+          <BlogList />
+        </div>
+      </section>
+
       {/* Daily Command Learning Section */}
       <section className="py-16 bg-terminal-gray">
         <div className="container mx-auto px-4">

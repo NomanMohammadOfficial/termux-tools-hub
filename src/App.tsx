@@ -13,6 +13,7 @@ import Disclaimer from "@/pages/Disclaimer";
 import CommandList from "@/pages/CommandList";
 import DownloadTermux from "@/pages/DownloadTermux";
 import TermuxPC from "@/pages/TermuxPC";
+import BlogPost from "@/pages/BlogPost";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -41,6 +42,7 @@ function App() {
             <Route path="/commands" element={<CommandList />} />
             <Route path="/download" element={<DownloadTermux />} />
             <Route path="/pc" element={<TermuxPC />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
