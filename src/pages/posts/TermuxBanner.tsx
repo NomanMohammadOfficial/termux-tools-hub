@@ -29,56 +29,56 @@ const TermuxBanner = () => {
         <div className="prose prose-invert max-w-none">
           <p className="text-lg text-terminal-light/80 mb-8">
             A custom banner in Termux can transform your terminal experience from plain to professional and personalized. 
-            In this comprehensive guide, we'll walk through creating an eye-catching banner that displays every time you launch Termux.
+            In this comprehensive guide, we&apos;ll walk through creating an eye-catching banner that displays every time you launch Termux.
           </p>
 
           <h2 className="text-2xl font-semibold text-terminal-light mt-8 mb-4">Prerequisites</h2>
           <p className="mb-4">First, update your packages:</p>
-          <CodeBlock code="pkg update && pkg upgrade" />
+          <CodeBlock code="pkg update && pkg upgrade" language="bash" />
           
           <p className="mb-4">Install required tools:</p>
-          <CodeBlock code="pkg install python" />
-          <CodeBlock code="pkg install figlet" />
-          <CodeBlock code="pkg install toilet" />
+          <CodeBlock code="pkg install python" language="bash" />
+          <CodeBlock code="pkg install figlet" language="bash" />
+          <CodeBlock code="pkg install toilet" language="bash" />
 
           <h2 className="text-2xl font-semibold text-terminal-light mt-8 mb-4">Creating Your Banner</h2>
           
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Step 1: Create Banner Directory</h3>
-          <CodeBlock code="mkdir ~/.termux" />
+          <CodeBlock code="mkdir ~/.termux" language="bash" />
 
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Step 2: Create Banner File</h3>
-          <CodeBlock code="touch ~/.termux/banner.txt" />
+          <CodeBlock code="touch ~/.termux/banner.txt" language="bash" />
 
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Step 3: Edit Banner Text</h3>
-          <CodeBlock code="nano ~/.termux/banner.txt" />
+          <CodeBlock code="nano ~/.termux/banner.txt" language="bash" />
 
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Step 4: Configure Bash</h3>
-          <CodeBlock code='echo "clear" >> ~/.bashrc' />
-          <CodeBlock code='echo "figlet -f small '\''Your Name'\''" >> ~/.bashrc' />
-          <CodeBlock code='echo "toilet -f term -F border '\''Welcome'\''" >> ~/.bashrc' />
+          <CodeBlock code={'echo "clear" >> ~/.bashrc'} language="bash" />
+          <CodeBlock code={'echo "figlet -f small \'Your Name\'" >> ~/.bashrc'} language="bash" />
+          <CodeBlock code={'echo "toilet -f term -F border \'Welcome\'" >> ~/.bashrc'} language="bash" />
 
           <h2 className="text-2xl font-semibold text-terminal-light mt-8 mb-4">Customization Options</h2>
           
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Different Fonts</h3>
           <p className="mb-4">View available fonts:</p>
-          <CodeBlock code="showfigfonts" />
+          <CodeBlock code="showfigfonts" language="bash" />
 
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Color Options</h3>
           <p className="mb-4">Add colors using toilet:</p>
-          <CodeBlock code="toilet -f mono12 -F metal 'Your Text'" />
+          <CodeBlock code="toilet -f mono12 -F metal 'Your Text'" language="bash" />
 
           <h2 className="text-2xl font-semibold text-terminal-light mt-8 mb-4">Troubleshooting</h2>
           
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Banner Not Appearing</h3>
-          <CodeBlock code="source ~/.bashrc" />
+          <CodeBlock code="source ~/.bashrc" language="bash" />
 
           <h3 className="text-xl font-semibold text-terminal-light mt-6 mb-3">Font Issues</h3>
-          <CodeBlock code="pkg reinstall figlet toilet" />
+          <CodeBlock code="pkg reinstall figlet toilet" language="bash" />
 
           <h2 className="text-2xl font-semibold text-terminal-light mt-8 mb-4">Best Practices</h2>
           <ul className="list-disc pl-6 mb-6 text-terminal-light/80">
             <li>Keep your banner text concise and readable</li>
-            <li>Use appropriate colors that don't strain the eyes</li>
+            <li>Use appropriate colors that don&apos;t strain the eyes</li>
             <li>Include useful information in your banner</li>
             <li>Regularly update your configuration</li>
           </ul>
