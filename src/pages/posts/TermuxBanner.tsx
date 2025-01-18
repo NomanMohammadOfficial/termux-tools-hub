@@ -20,13 +20,81 @@ const TermuxBanner = () => {
           property="og:description" 
           content="Learn how to create and customize your Termux banner with step-by-step instructions. Make your terminal more personalized and informative." 
         />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="https://muxrifhrxglvamegpyhb.supabase.co/storage/v1/object/public/blog_images/termux-banner.jpg" />
+        <meta property="article:published_time" content="2024-03-10T00:00:00Z" />
+        <meta property="article:modified_time" content="2024-03-10T00:00:00Z" />
+        <meta property="article:section" content="Tutorial" />
+        <meta property="article:tag" content="Termux" />
+        <meta property="article:tag" content="Terminal" />
+        <meta property="article:tag" content="Customization" />
         <link rel="canonical" href="https://termuxapps.com/blog/termux-banner" />
+        
+        {/* Schema.org markup for Google */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "TechArticle",
+            "headline": "How to Create a Custom Termux Banner - Complete Guide",
+            "image": "https://muxrifhrxglvamegpyhb.supabase.co/storage/v1/object/public/blog_images/termux-banner.jpg",
+            "datePublished": "2024-03-10T00:00:00Z",
+            "dateModified": "2024-03-10T00:00:00Z",
+            "author": {
+              "@type": "Organization",
+              "name": "TermuxApps"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "TermuxApps",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://termuxapps.com/og-image.png"
+              }
+            },
+            "description": "Learn how to create and customize your Termux banner with step-by-step instructions. Make your terminal more personalized and informative.",
+            "articleBody": "A custom banner in Termux can transform your terminal experience from plain to professional and personalized...",
+            "keywords": "termux banner, terminal customization, figlet, toilet, bash configuration",
+            "tutorial": {
+              "@type": "HowTo",
+              "name": "How to Create a Custom Termux Banner",
+              "step": [
+                {
+                  "@type": "HowToStep",
+                  "name": "Update Packages",
+                  "text": "First update your Termux packages using pkg update && pkg upgrade"
+                },
+                {
+                  "@type": "HowToStep",
+                  "name": "Install Required Tools",
+                  "text": "Install necessary tools like python, figlet, and toilet"
+                },
+                {
+                  "@type": "HowToStep",
+                  "name": "Create Banner",
+                  "text": "Create and configure your custom banner"
+                }
+              ]
+            }
+          })}
+        </script>
       </Helmet>
 
-      <article className="max-w-3xl mx-auto mt-8 px-4">
-        <h1 className="text-4xl font-bold text-terminal-light mb-6">Create a Professional Custom Termux Banner</h1>
+      <article className="max-w-3xl mx-auto mt-8 px-4" itemScope itemType="https://schema.org/TechArticle">
+        {/* Feature Image */}
+        <div className="relative w-full h-[400px] mb-8 rounded-lg overflow-hidden">
+          <img 
+            src="https://muxrifhrxglvamegpyhb.supabase.co/storage/v1/object/public/blog_images/termux-banner.jpg"
+            alt="Custom Termux Banner Example"
+            className="w-full h-full object-cover"
+            itemProp="image"
+          />
+        </div>
+
+        <h1 className="text-4xl font-bold text-terminal-light mb-6" itemProp="headline">
+          Create a Professional Custom Termux Banner
+        </h1>
         
-        <div className="prose prose-invert max-w-none">
+        <div className="prose prose-invert max-w-none" itemProp="articleBody">
           <p className="text-lg text-terminal-light/80 mb-8">
             A custom banner in Termux can transform your terminal experience from plain to professional and personalized. 
             In this comprehensive guide, we&apos;ll walk through creating an eye-catching banner that displays every time you launch Termux.
