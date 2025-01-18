@@ -32,31 +32,13 @@
   </url>
   <url>
     <loc>https://termuxapps.com/blog/how-to-install-ubuntu-termux</loc>
-    <lastmod>2024-03-08</lastmod>
+    <lastmod>2024-03-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://termuxapps.com/blog/install-truecaller-termux</loc>
-    <lastmod>2024-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://termuxapps.com/blog/termux-box-guide</loc>
-    <lastmod>2024-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://termuxapps.com/blog/phoneinfoga-termux-guide</loc>
-    <lastmod>2024-03-08</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://termuxapps.com/blog/userfinder-termux-guide</loc>
-    <lastmod>2024-03-08</lastmod>
+    <loc>https://termuxapps.com/blog/essential-termux-commands</loc>
+    <lastmod>2024-03-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

@@ -1,38 +1,11 @@
 import { useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
 import { Layout } from "@/components/Layout";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Helmet } from "react-helmet";
+import { blogPosts } from "@/data/blog-posts";
 
 const BlogPost = () => {
   const { slug } = useParams();
-
-  const { data: post, isLoading } = useQuery({
-    queryKey: ["blog-post", slug],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("blog_posts")
-        .select("*")
-        .eq("slug", slug)
-        .single();
-      
-      if (error) throw error;
-      return data;
-    },
-  });
-
-  if (isLoading) {
-    return (
-      <Layout>
-        <div className="max-w-3xl mx-auto mt-8">
-          <Skeleton className="h-8 w-3/4 mb-4" />
-          <Skeleton className="h-4 w-1/2 mb-8" />
-          <Skeleton className="h-64 w-full" />
-        </div>
-      </Layout>
-    );
-  }
+  const post = blogPosts.find((post) => post.slug === slug);
 
   if (!post) {
     return (
@@ -57,7 +30,7 @@ const BlogPost = () => {
         <meta property="article:modified_time" content={post.updated_at} />
       </Helmet>
 
-      <article className="max-w-3xl mx-auto mt-8">
+      <article className="max-w-3xl mx-auto mt-8 px-4">
         <header className="mb-8">
           <h1 className="text-4xl font-bold text-terminal-light mb-4">{post.title}</h1>
           <div className="flex items-center gap-4 text-terminal-light/60">
@@ -71,7 +44,7 @@ const BlogPost = () => {
 
         <div className="prose prose-invert max-w-none">
           {post.content.split('\n').map((paragraph, index) => (
-            <p key={index} className="mb-4 text-terminal-light/80">
+            <p key={index} className="mb-4 text-terminal-light/80 leading-relaxed">
               {paragraph}
             </p>
           ))}
