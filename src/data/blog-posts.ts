@@ -8,6 +8,7 @@ export interface BlogPost {
   reading_time: number;
   created_at: string;
   updated_at: string;
+  featured_image?: string | null;
 }
 
 export const blogPosts: BlogPost[] = [
@@ -154,6 +155,7 @@ Remember to use this tool ethically and in accordance with local laws and regula
     meta_keywords: ["termux", "truecaller", "CLI", "phone number lookup", "python", "android", "number search", "caller ID"],
     reading_time: 8,
     created_at: "2024-03-10T00:00:00Z",
-    updated_at: "2024-03-10T00:00:00Z"
+    updated_at: "2024-03-10T00:00:00Z",
+    featured_image: null
   }
 ];

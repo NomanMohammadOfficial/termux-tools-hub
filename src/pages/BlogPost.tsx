@@ -26,6 +26,39 @@ const BlogPost = () => {
     { href: `/blog/${slug}`, label: post.title },
   ];
 
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.meta_description,
+    "keywords": post.meta_keywords.join(", "),
+    "datePublished": post.created_at,
+    "dateModified": post.updated_at,
+    "author": {
+      "@type": "Person",
+      "name": "Noman Mohammad",
+      "url": "https://termuxapps.com/about"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "TermuxApps",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://termuxapps.com/og-image.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://termuxapps.com/blog/${slug}`
+    },
+    ...(post.featured_image ? {
+      "image": {
+        "@type": "ImageObject",
+        "url": post.featured_image
+      }
+    } : {})
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -39,36 +72,7 @@ const BlogPost = () => {
         <meta property="article:modified_time" content={post.updated_at} />
         <link rel="canonical" href={`https://termuxapps.com/blog/${slug}`} />
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BlogPosting",
-            "headline": post.title,
-            "description": post.meta_description,
-            "keywords": post.meta_keywords.join(", "),
-            "datePublished": post.created_at,
-            "dateModified": post.updated_at,
-            "author": {
-              "@type": "Person",
-              "name": "Noman Mohammad",
-              "url": "https://termuxapps.com/about"
-            },
-            "publisher": {
-              "@type": "Organization",
-              "name": "TermuxApps",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://termuxapps.com/og-image.png"
-              }
-            },
-            "mainEntityOfPage": {
-              "@type": "WebPage",
-              "@id": `https://termuxapps.com/blog/${slug}`
-            },
-            "image": post.featured_image ? {
-              "@type": "ImageObject",
-              "url": post.featured_image
-            } : undefined
-          })}
+          {JSON.stringify(schemaData)}
         </script>
       </Helmet>
 
