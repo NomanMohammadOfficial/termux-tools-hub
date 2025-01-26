@@ -1,6 +1,7 @@
 import { Layout } from "@/components/Layout";
 import { BlogList } from "@/components/BlogList";
 import { Helmet } from "react-helmet";
+import { blogPosts } from "@/data/blog-posts";
 
 const Blog = () => {
   return (
@@ -22,6 +23,35 @@ const Blog = () => {
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href="https://termuxapps.com/blog" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "name": "TermuxApps Blog",
+            "description": "Comprehensive tutorials and guides for Termux users",
+            "url": "https://termuxapps.com/blog",
+            "publisher": {
+              "@type": "Organization",
+              "name": "TermuxApps",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://termuxapps.com/og-image.png"
+              }
+            },
+            "blogPost": blogPosts.map(post => ({
+              "@type": "BlogPosting",
+              "headline": post.title,
+              "description": post.meta_description,
+              "datePublished": post.created_at,
+              "dateModified": post.updated_at,
+              "author": {
+                "@type": "Person",
+                "name": "Noman Mohammad"
+              },
+              "url": `https://termuxapps.com/blog/${post.slug}`
+            }))
+          })}
+        </script>
       </Helmet>
 
       <div className="mt-24">
