@@ -1,6 +1,6 @@
 import { Layout } from "@/components/Layout";
 import { BlogList } from "@/components/BlogList";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { blogPosts } from "@/data/blog-posts";
 
 const Blog = () => {

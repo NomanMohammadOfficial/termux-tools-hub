@@ -9,7 +9,7 @@ export const BlogList = () => {
         <Link to={`/blog/${post.slug}`} key={post.id}>
           <Card className="bg-terminal-gray border-terminal-green/20 hover:border-terminal-green transition-colors">
             <CardHeader>
-              <CardTitle className="text-terminal-light">{post.title}</CardTitle>
+              <CardTitle as="h2" className="text-terminal-light">{post.title}</CardTitle>
               <CardDescription className="text-terminal-light/60">
                 {post.meta_description.slice(0, 100)}...
               </CardDescription>
