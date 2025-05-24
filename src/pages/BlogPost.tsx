@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Layout } from "@/components/Layout";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 import { blogPosts } from "@/data/blog-posts";
 import { CodeBlock } from "@/components/CodeBlock";
 import { Breadcrumb } from "@/components/ui/breadcrumb";
@@ -108,15 +108,38 @@ const processContent = (content: string) => {
         <div key={index} className="prose prose-invert max-w-none">
           {part.split('\n').map((paragraph, pIndex) => {
             if (paragraph.startsWith('#')) {
-              const level = paragraph.match(/^#+/)[0].length;
+              const markdownLevel = paragraph.match(/^#+/)[0].length;
               const text = paragraph.replace(/^#+\s/, '');
-              const Tag = `h${level}` as keyof JSX.IntrinsicElements;
+              // Ensure heading level starts from h2 and doesn't exceed h6
+              const headingLevel = Math.min(markdownLevel + 1, 6); 
+              const Tag = `h${headingLevel}` as keyof JSX.IntrinsicElements;
               return (
                 <Tag key={pIndex} className="text-terminal-light font-bold my-4">
                   {text}
                 </Tag>
               );
             }
+
+            // Image processing (new logic)
+            const imageRegex = /^!\[(.*?)\]\((.*?)\)$/;
+            const imageMatch = paragraph.match(imageRegex);
+
+            if (imageMatch) {
+              const altText = imageMatch[1];
+              const imageUrl = imageMatch[2];
+              return (
+                <img 
+                  key={pIndex} 
+                  src={imageUrl} 
+                  alt={altText} 
+                  className="my-4 rounded-md" // Optional: add some styling
+                />
+              );
+            }
+            
+            // Fallback to paragraph if not a heading or image
+            if (paragraph.trim() === '') return null; // Avoid rendering empty paragraphs
+
             return (
               <p key={pIndex} className="mb-4 text-terminal-light/80 leading-relaxed">
                 {paragraph}

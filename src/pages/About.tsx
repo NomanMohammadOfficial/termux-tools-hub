@@ -1,9 +1,20 @@
 import { Layout } from "@/components/Layout";
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
 
 const About = () => {
   return (
     <Layout>
+      <Helmet> {/* Add Helmet section */}
+        <title>About Us - TermuxApps</title>
+        <meta name="description" content="Learn more about TermuxApps, our mission, and the team dedicated to providing the best Termux resources and cybersecurity insights." />
+        <link rel="canonical" href="https://termuxapps.com/about" />
+        <meta property="og:title" content="About Us - TermuxApps" />
+        <meta property="og:description" content="Learn more about TermuxApps, our mission, and the team dedicated to providing the best Termux resources and cybersecurity insights." />
+        <meta property="og:url" content="https://termuxapps.com/about" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://termuxapps.com/og-image.png" /> {/* Added og:image */}
+      </Helmet>
       <div className="max-w-4xl mx-auto space-y-12">
         <section className="text-center space-y-4">
           <h1 className="text-3xl md:text-4xl font-mono font-bold text-terminal-light">

@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ElementType } from 'react'; // Added ElementType
 
 interface CommandCardProps {
   name: string;
@@ -6,13 +7,14 @@ interface CommandCardProps {
   category: string;
   usage: string;
   examples: string[];
+  titleAs?: ElementType; // Added titleAs prop
 }
 
-export const CommandCard = ({ name, description, category, usage, examples }: CommandCardProps) => {
+export const CommandCard = ({ name, description, category, usage, examples, titleAs }: CommandCardProps) => { // Added titleAs to destructuring
   return (
     <Card className="bg-terminal-gray border-terminal-green/20 mb-4">
       <CardHeader>
-        <CardTitle className="text-xl font-mono text-terminal-light flex items-center gap-2">
+        <CardTitle as={titleAs} className="text-xl font-mono text-terminal-light flex items-center gap-2"> {/* Passed titleAs to CardTitle */}
           {name}
           <span className="text-sm text-terminal-green">{category}</span>
         </CardTitle>

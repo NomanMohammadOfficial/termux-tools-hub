@@ -30,10 +30,10 @@ const CardHeader = React.forwardRef<
 CardHeader.displayName = "CardHeader"
 
 const CardTitle = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
+  HTMLHeadingElement, // Changed from HTMLParagraphElement
+  React.HTMLAttributes<HTMLHeadingElement> & { as?: React.ElementType } // Add 'as' prop
+>(({ className, as: Tag = "h3", ...props }, ref) => ( // Destructure 'as' and default to 'h3'
+  <Tag // Use the Tag variable
     ref={ref}
     className={cn(
       "text-2xl font-semibold leading-none tracking-tight",

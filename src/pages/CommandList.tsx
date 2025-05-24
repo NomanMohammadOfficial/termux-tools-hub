@@ -144,7 +144,7 @@ const CommandList = () => {
 
         <div className="space-y-6">
           {filteredCommands.map((command, index) => (
-            <CommandCard key={index} {...command} />
+            <CommandCard key={index} {...command} titleAs="h2" />
           ))}
         </div>
       </div>
